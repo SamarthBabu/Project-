@@ -1,0 +1,82 @@
+String car;
+void setup() {
+  Serial.begin(9600);
+  pinMode(4, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+}
+void loop() {
+  if (Serial.available())
+
+  {
+    car = Serial.readString();
+    Serial.println(car);
+    if (car == "forward")
+      forward();
+    if (car == "reverse")
+      reverse();
+    if (car == "stop")
+      stop();
+    if (car == "turn right")
+      right();
+    if (car == "turn left")
+      left();
+    if (car == "F")
+      forward();
+    if (car == "B")
+      reverse();
+    if (car == "S")
+      stop();
+    if (car == "R")
+      right();
+    if (car == "L")
+      left();
+  }
+
+  void forward() {
+    digitalWrite(4, HIGH);
+    digitalWrite(5, LOW);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, LOW);
+  }
+  void reverse() {
+    digitalWrite(4, LOW);
+    digitalWrite(5, HIGH);
+    digitalWrite(6, LOW);
+    digitalWrite(7, HIGH);
+  }
+  void right() {
+    digitalWrite(13, HIGH);
+    digitalWrite(12, LOW);
+    digitalWrite(4, HIGH);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+    delay(1000);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+  }
+  void left() {
+    digitalWrite(13, LOW);
+    digitalWrite(12, HIGH);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, LOW);
+    delay(1000);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+  }
+  void stop() {
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+  }
